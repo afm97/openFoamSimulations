@@ -16,7 +16,7 @@ FoamFile
 
 combustionModel  EDC;
 
-active  true;
+active  false;
 
 EDCCoeffs
 {
