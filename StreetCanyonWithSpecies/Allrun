@@ -11,7 +11,7 @@ runApplication chemkinToFoam \
 
 runApplication blockMesh
 
-runApplication setFields
+#runApplication setFields
 
 if isTest "$@"
 then
@@ -26,18 +26,19 @@ else
 
     foamDictionary system/controlDict -entry endTime -set 1500
 
-    foamDictionary constant/chemistryProperties -entry chemistry -set off
+    #foamDictionary constant/chemistryProperties -entry chemistry -set off
 
     runApplication $(getApplication)
 
     # Run with chemistry until flame reaches its full size
-    foamDictionary system/controlDict -entry writeInterval -set 100
+    
+    #foamDictionary system/controlDict -entry writeInterval -set 100
 
-    foamDictionary system/controlDict -entry endTime -set 5000
+    #foamDictionary system/controlDict -entry endTime -set 5000
 
-    foamDictionary constant/chemistryProperties -entry chemistry -set on
+    #foamDictionary constant/chemistryProperties -entry chemistry -set on
 
-    runApplication -o $(getApplication)
+    #runApplication -o $(getApplication)
 
 fi
 
