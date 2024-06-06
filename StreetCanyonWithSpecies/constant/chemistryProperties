@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2312                                 |
+|  \\    /   O peration     | Version:  2312                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -26,7 +26,6 @@ importantSpecies
 {
     CO2             ;
     H2O             ;
-    CH4             ;
     O2              ;
 }
 
@@ -41,26 +40,24 @@ odeCoeffs
 
 reduction
 {
-    active          on;
+    active          off;
     log             on;
     tolerance       0.0001;
     method          DAC;
     initialSet
     {
-        CO              ;
-        CH4             ;
-        HO2             ;
+        C3H8            ;
     }
     automaticSIS    off;
     fuelSpecies
     {
-        CH4             1;
+        C3H8            1;
     }
 }
 
 tabulation
 {
-    active          on;
+    active          off;
     log             on;
     printProportion off;
     printNumRetrieve off;
