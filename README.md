@@ -19,11 +19,11 @@ A estrutura do repositório está organizada da seguinte maneira:
 /scripts
     - Em desenvolvimento
 /docs
-    -Caso necessário
+    - Material complementar
 README.md
 ```
 
-- /simulacoes: Contém os diferentes casos de simulação.
+- /simulacões: Contém os diferentes casos de simulação.
 - /scripts: Scripts auxiliares para preprocessamento e pós-processamento das simulações.
 - /doc: Documentação adicional e tutoriais.
 
@@ -57,7 +57,9 @@ simpleFoam
 
 Para detalhes específicos de cada caso, consulte a documentação ou wiki.
 
+### Visualização do resultado
 
+Recomenda-se utilizar o ParaView, disponível [aqui](https://www.paraview.org/download/). Para utiliza-ló, digite *paraFoam* no terminal após a execução do solver ser finalizada.
 
 
 
