@@ -29,7 +29,7 @@ thermoType
 inertSpecie N2;
 
 chemistryReader foamChemistryReader;
-foamChemistryFile "$FOAM_CASE/constant/reactions_empty";
+foamChemistryFile "$FOAM_CASE/constant/reactions_APFoam_CS07A";
 foamChemistryThermoFile "$FOAM_CASE/constant/thermo_CS07A";
 
 // ************************************************************************* //
