@@ -19,6 +19,8 @@ cp -rf 0.orig/ 0
 
 runApplication blockMesh
 
+runApplication topoSet
+
 # Example running topoSet and refineMesh 3 times with multiple dictionaries
 # -a|-append option appends to log file
 
