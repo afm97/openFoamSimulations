@@ -1,0 +1,40 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scalarSource
+{
+    type            scalarSemiImplicitSource;
+    active          true;
+    
+    timeStart       50;
+    //updateSelection   false;
+    
+    duration        200.0;
+
+    selectionMode   cellZone;
+    cellZone	    source1;
+
+    volumeMode      absolute;
+
+    injectionRateSuSp
+    {
+	N2O5           (6.21e-6 0); // Su = 0.001 e Sp = 0
+    }
+}
+
+
+// ************************************************************************* //
