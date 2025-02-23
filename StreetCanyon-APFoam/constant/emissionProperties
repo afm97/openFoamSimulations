@@ -23,14 +23,14 @@ EmissionRegion-0  //name must in the format of 'EmissionRegion-number(start from
 
 box
 {
-p1 (0.691 0.664 0) ; // p1  (xmin, ymin, zmin)
-p2 (0.741 0.756 0.01);   // p2  (xmax, ymax, zmax)
+p1 (20 0 0) ; // p1  (xmin, ymin, zmin)
+p2 (21 0.5 0.05);   // p2  (xmax, ymax, zmax)
 }
 
 
 EmissionComposition   // in the dimensions of kg/s, default value is 0
 {
-C2H6	 6.21e-6;
+N2O5	 6.21e-6;
 }
 
 }
