@@ -6,11 +6,6 @@ cd "${0%/*}" || exit 1
 # Source tutorial run functions
 . "$WM_PROJECT_DIR/bin/tools/RunFunctions"
 
-# Example with runApplication:
-# - runs blockMesh in background
-# - redirecting standard output to log.blockMesh
-# - does *not* run in log file already exists
-
 ./clean
 
 cp -rf 0.orig/ 0
@@ -19,15 +14,73 @@ runApplication blockMesh
 
 runApplication topoSet
 
-# Example running topoSet and refineMesh 3 times with multiple dictionaries
-# -a|-append option appends to log file
-
 runApplication decomposePar
 
-runParallel "$(getApplication)"
+#--------------------------------------------------------------------------------------#
 
-# Example with runParallel to run in parallel
-# getApplication finds solver name from "application" entry in controlDict
+foamDictionary system/controlDict -entry startTime -set 0
+
+foamDictionary system/controlDict -entry writeInterval -set 1000
+
+foamDictionary system/controlDict -entry endTime -set 1000
+
+#--------------------------------------------------------------------------------------#
+
+foamDictionary constant/chemistryProperties -entry chemistry -set off
+
+#--------------------------------------------------------------------------------------#
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,U\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,k\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,epsilon\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,h\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,K\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,p\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,Yi\) -set "Gauss upwind"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,Yi_h\) -set "Gauss upwind"
+
+runParallel $(getApplication)
+
+#--------------------------------------------------------------------------------------#
+
+foamDictionary constant/chemistryProperties -entry chemistry -set on
+
+#--------------------------------------------------------------------------------------#
+
+foamDictionary system/controlDict -entry startTime -set 1000
+
+foamDictionary system/controlDict -entry writeInterval -set 200
+
+foamDictionary system/controlDict -entry endTime -set 5000
+
+#--------------------------------------------------------------------------------------#
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,U\) -set "bounded Gauss limitedLinear 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,k\) -set "bounded Gauss limitedLinear 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,epsilon\) -set "bounded Gauss limitedLinear 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,h\) -set "bounded Gauss limitedLinear 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,K\) -set "bounded Gauss limitedLinear 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,p\) -set "bounded Gauss limitedLinear 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,Yi\) -set "Gauss limitedLinear01 1"
+
+foamDictionary system/fvSchemes -entry divSchemes.div\(phi,Yi_h\) -set "Gauss limitedLinear01 1"
+
+runParallel -o $(getApplication)
+
+#--------------------------------------------------------------------------------------#
 
 runApplication reconstructPar
 
