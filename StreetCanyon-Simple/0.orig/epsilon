@@ -16,7 +16,11 @@ FoamFile
 
 dimensions      [0 2 -3 0 0 0 0];
 
-internalField   uniform 30;
+//epsilon 25;
+//epsilon 15;
+epsilon 20; 
+
+internalField   uniform $epsilon;
 
 boundaryField
 {
@@ -24,26 +28,23 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           uniform 30;
+        value           uniform $epsilon;
     }
     
     outlet
     {
-        type            inletOutlet;
-        inletValue      uniform 30;
-        value           uniform 30;
+        type            zeroGradient;
     }
 
     topWall
     {
-        type            epsilonWallFunction;
-        value           uniform 30;
+        type            zeroGradient;
     }
     
     ground
     {
         type            epsilonWallFunction;
-        value           uniform 30;
+        value           uniform $epsilon;
     }
     
     frontAndBack
