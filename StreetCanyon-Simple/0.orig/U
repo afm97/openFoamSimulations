@@ -24,7 +24,7 @@ boundaryField
     inlet
     {
         type            fixedValue;//codedFixedValue;
-        value           uniform (1.45 0 0);
+        value           uniform (1 0 0);
         
         //U_ref = 3.8
         //H = 1
