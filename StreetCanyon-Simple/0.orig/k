@@ -14,25 +14,27 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+#include        "include/initialConditions"
+
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 1;
+internalField   uniform $TKE;
 
 boundaryField
 {
 
     inlet
     {
-        type            turbulentIntensityKineticEnergyInlet;
-        intensity       0.05;
-        value           uniform 0.25;
+        type            atmBoundaryLayerInletK;
+        #include        "include/ABLConditions"
+        value           uniform 0.0; 
     }
     
     outlet
     {
         type            inletOutlet;
-        inletValue      uniform 1;
-        value           uniform 1;
+        inletValue      $internalField;
+        value           $internalField;
 
     }
 
@@ -44,13 +46,10 @@ boundaryField
     ground
     {
         type            kqRWallFunction;
-        value           uniform 1;
+        value           uniform 0.0;
     }
     
-    frontAndBack
-    {
-        type            empty;
-    }    
+    #include            "include/frontAndBack"   
 }
 
 
