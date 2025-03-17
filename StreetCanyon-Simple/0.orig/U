@@ -14,41 +14,21 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+#include        "include/initialConditions"
+
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (1.45 0 0);
+internalField   uniform $flowVelocity;
 
 boundaryField
 {
 
     inlet
     {
-        type            fixedValue;//codedFixedValue;
-        value           uniform (1 0 0);
-        
-        //U_ref = 3.8
-        //H = 1
-        //U(z) = U_ref*(z/H)^0.26
-    
-        /*name powerLawVelocity;
-        
-        code
-        #{
-            const fvPatch& boundaryPatch = patch();
-    	    const vectorField& Cf = boundaryPatch.Cf();
-    	    vectorField& field = *this;
-    	
-    	    const scalar U_ref = 1.45; 
-    	    const scalar H = 0.1;
-    	
-    	    forAll(Cf, faceI)
-    	    {
-    	        const scalar y = Cf[faceI].y();
-    	        
-    	        field[faceI] = vector(U_ref*pow(y/H,0.26), 0, 0);
-    	    };
-        #};
-        */
+        type            atmBoundaryLayerInletVelocity;
+        #include        "include/ABLConditions"
+        value           uniform $flowVelocity; 
+
     }
     
     outlet
@@ -66,10 +46,8 @@ boundaryField
         type            noSlip;
     }
     
-    frontAndBack
-    {
-        type            empty;
-    }    
+    #include            "include/frontAndBack"
+ 
 }
 
 
