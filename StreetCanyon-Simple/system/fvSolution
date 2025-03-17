@@ -18,21 +18,21 @@ solvers
 {
     p
     {
-        //solver          GAMG;
-        solver          PCG;
+        solver          GAMG;
+        //solver          PCG;
         //preconditioner  DIC; 
-        preconditioner  FDIC;
+        //preconditioner  FDIC;
         tolerance       1e-06;
         relTol          0.1;
-        //smoother        GaussSeidel;
+        smoother        GaussSeidel;
     }
 
     "(U|k|epsilon|omega|f|v2)"
     {
-        //solver          smoothSolver;
-        //smoother        symGaussSeidel;
-        solver          PBiCGStab;
-        preconditioner  DILU;
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        //solver          PBiCGStab;
+        //preconditioner  DILU;
         tolerance       1e-05;
         relTol          0.1;
     }
@@ -56,13 +56,13 @@ relaxationFactors
 {
     fields
     {
-        p               0.95;
+        p               0.8;
     }
 
     equations
     {
-        U               0.95; // 0.9 is more stable but 0.95 more convergent
-        ".*"            0.95; // 0.9 is more stable but 0.95 more convergent
+        U               0.8;
+        ".*"            0.8;
     }
 }
 
