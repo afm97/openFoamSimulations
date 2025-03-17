@@ -14,13 +14,15 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+#include        "include/initialConditions"
+
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform $pressure;
 
 boundaryField
 {
-    inlet
+    "inlet|topWall|ground"
     {
         type            zeroGradient;
     }
@@ -28,24 +30,11 @@ boundaryField
     outlet
     {
         type            fixedValue;
-        value           uniform 0;
+        value           uniform $pressure;
 
     }
-
-    topWall
-    {
-        type            zeroGradient;
-    }
     
-    ground
-    {
-        type            zeroGradient;
-    }
-    
-    frontAndBack
-    {
-        type            empty;
-    }    
+    #include            "include/frontAndBack" 
 }
 
 
