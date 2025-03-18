@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#include        "include/initialConditions"
+#include        "include/boundaryConditions"
 
 dimensions      [0 1 -1 0 0 0 0];
 
