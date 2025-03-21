@@ -28,12 +28,12 @@ y0 0; yh 0.5; y1 1; y2 3; y3 7;
 
 Nz 1;
 
-Ny1D 15; Ny1U 10; Ny2D 10; Ny2U 8; Ny3D 25; Ny3U 15;
+Ny1D 10; Ny1U 10; Ny2D 10; Ny2U 8; Ny3D 20; Ny3U 15;
 
-Nx1L 10; Nx1R 20; Nx3T 20; Nx4T 20; Nx2L 20; Nx2R 20; 
+Nx1L 10; Nx1R 15; Nx3T 15; Nx4T 15; Nx2L 12; Nx2R 10; 
 
-NyCD 30; NyCU 30; 
-NxCR 30; NxCL 30; 
+NyCD 25; NyCU 25; 
+NxCR 25; NxCL 25; 
 
 //------- GRINDING --------\\
 
